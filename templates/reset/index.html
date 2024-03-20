@@ -1,0 +1,25 @@
+{% extends "reset/base.html" %}
+
+{% block content %}
+
+<!--{% for message in messages %}-->
+<!--<div class="message {{message.tags}}">-->
+<!--    {{message}}-->
+<!--</div>-->
+<!--    {% endfor %}-->
+<div class="center p-4">
+    <h1>Home Page</h1>
+    <h3>{{user.username}} </h3>
+    <p>You are already on the home page</p>
+   {% if request.user.is_authenticated %}
+   <form action="{% url 'logout' %}" method="POST">
+       {% csrf_token %}
+
+       <button type="submit" class="btn btn-primary">Logout</button>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</div>
+You want to Register?<a href="{% url 'signup' %}">Signup</a>
+
+{% endblock %}
